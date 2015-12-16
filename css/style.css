@@ -4,3 +4,7 @@ height: 768px;
 background-color: black;
 border: 3px solid blue;
 }
+
+.footer{
+	background-image: url(img/mountain.png)
+}
