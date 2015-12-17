@@ -1,25 +1,47 @@
 .container{
-width: 1024px;
-height: 768px;
+width: 100%;
+height: 900px;
+position: relative;
 background-color: black;
 border: 3px solid blue;
+	overflow: hidden;
+
 }
 
 .footer{
+	position: relative;
 	background-image: url(http://i.imgur.com/vx4adcg.png);
 	height: 20%;
 	width: 100%;
+	z-index: 2;
 
 }
 
 .raindrop{
 	background-image: url(http://i.imgur.com/d1ltbRA.png);
-	height: 32px;
-	width: 32px;
+	height: 64px;
+	width: 64px;
 	background-size: contain;
 	background-repeat: no-repeat;
+	position: absolute;
+	transition: top 5s, left 5s; /*lifted from duck hunt, makes animation do its thing*/
+ 	transition-timing-function: linear;
+ 	z-index: 1;
 }
 
 .game{
+	postion: relative;
+	width: 100%;
 	height: 80%;
+	z-index: 0;
+
+}
+
+.clicked{
+	display:none;
+}
+
+.score{
+	height: 200px;
+	width: 100%;
 }
