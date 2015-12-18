@@ -46,7 +46,9 @@ var angleFinder = function(origin, target){
       drop.toggleClass("clicked");
       score++;
       $(".evap").html("<h1>Drops Evaporated: " + score+ "</h1>");
-      console.log("smoke puff");
+      setTimeout(function(){
+        drop.remove();
+      },300)
 	});
 
     setTimeout(function(){
