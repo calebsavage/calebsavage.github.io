@@ -63,7 +63,7 @@ var angleFinder = function(origin, target){
 
 setInterval(function(){
 dropMaker();
-rate -=1;
+rate -=10;
 console.log("rate got faster");
 }, rate);	
 
