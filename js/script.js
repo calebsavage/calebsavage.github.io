@@ -5,6 +5,7 @@ console.log("wanna piece o me");
 
 var score = 0;
 var demerits = 0;
+var rate = 2500;
 
 var angleFinder = function(origin, target){
   var diff = origin-target; //should be negative if origin < targer
@@ -45,6 +46,7 @@ var angleFinder = function(origin, target){
       drop.toggleClass("clicked");
       score++;
       $(".evap").html("<h1>Drops Evaporated: " + score+ "</h1>");
+      console.log("smoke puff");
 	});
 
     setTimeout(function(){
@@ -59,7 +61,9 @@ var angleFinder = function(origin, target){
 
 setInterval(function(){
 dropMaker();
-}, 2000);	
+rate -=1;
+console.log("rate got faster");
+}, rate);	
 
 
 });
