@@ -1,26 +1,35 @@
 
 "use strict";
 $(function () {
-console.log("wanna piece o me");
+
 
 var score = 0;
 var demerits = 0;
 var rate = 2500;
+var poof = new Audio("poof.wav");
+var prevHighScore;
 
 var angleFinder = function(origin, target){
-  var diff = origin-target; //should be negative if origin < targer
-  var height = 900;
+  var diff = origin-target; //should be negative if origin < target
+  var height = 900; //height of container div
   var hyp = Math.sqrt(Math.pow(height,2) + Math.pow(diff,2));
-
-  // var formulaNum = Math.pow(height,2) + hyp - diff; //numerator of arcCos fxn
-  // var formulaDenom = 2 * height * hyp;
-
-  // var angleRads = (Math.acos(formulaNum / formulaDenom));
-  // var radFactor = 180 / Math.PI;
-  // return (angleRads * radFactor);
   var angleRads = Math.atan(diff/hyp);
   return (angleRads * 180 / Math.PI);
 };
+
+var cookieDough = function(hiScore){ //sets cookie
+  document.cookie = hiScore;
+}
+var cookieJar = function(){ //gets cookie
+  var chocoChips = document.cookie;
+  if (chocoChips){
+    $(".hiscore").html("<h1>High Score: " + chocoChips + "</h1>");
+  } else{
+    $(".hiscore").html("<h1>High Score: 0</h1>");
+  }
+}
+
+cookieJar();
 
 	var dropMaker = function(){
 		var drop = $("<div class ='raindrop'></div>");
@@ -45,27 +54,38 @@ var angleFinder = function(origin, target){
     drop.click(function(){
       drop.toggleClass("clicked");
       score++;
+      poof.play(); //sound FX
       $(".evap").html("<h1>Drops Evaporated: " + score+ "</h1>");
       setTimeout(function(){
         drop.remove();
       },300)
 	});
 
-    setTimeout(function(){
+    setTimeout(function(){ //removes drop from DOM when they hit the bottom of page
       if (!drop.hasClass("clicked")){
       drop.remove();
-      demerits++;
-      $(".hits").html("<h1>Hits: " + demerits + "</h1>");
+      cookieDough(score); //sets cookie
+      alert("Game Over");
+      location.reload();
+
     }
-    },6000);
+    },5500);
   } //end dropmaker fxn
 
+$(".start").click(function(){
+    $(".container").toggleClass("dim");
+    $(".start").remove();
+    var decreasingInterval = function(){
+        clearInterval(interval);
+        if (rate > 500) {rate -= 50};
+        console.log(rate);
+        dropMaker();
+        interval = setInterval(decreasingInterval, rate);
+    }
+    var interval = setInterval(decreasingInterval, rate);
+});
 
-setInterval(function(){
-dropMaker();
-rate -=10;
-console.log("rate got faster");
-}, rate);	
+
 
 
 });
