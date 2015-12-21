@@ -1,5 +1,6 @@
-body{
+body, html{
 	font-family: sans-serif;
+	cursor: url:(/img/umbrella.png), pointer;
 }
 .container{
 width: 100%;
@@ -82,6 +83,11 @@ border: 3px solid blue;
 	min-height: 100px;
 	color: grey;
 	z-index: 2;
+}
+
+.start:hover{
+	color: white;
+	background-color: blue;
 }
 
 
