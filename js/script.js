@@ -20,12 +20,13 @@ var angleFinder = function(origin, target){
 var cookieDough = function(hiScore){ //sets cookie
   document.cookie = hiScore;
 }
+
 var cookieJar = function(){ //gets cookie
   var chocoChips = document.cookie;
   if (chocoChips){
-    $(".hiscore").html("<h1>High Score: " + chocoChips + "</h1>");
+    $(".hiscore").html("<h1>Previous Score: " + chocoChips + "</h1>");
   } else{
-    $(".hiscore").html("<h1>High Score: 0</h1>");
+    $(".hiscore").html("<h1>Previous Score: 0</h1>");
   }
 }
 
